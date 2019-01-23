@@ -234,13 +234,14 @@ class GradusApp implements ActionListener{
         int weight = Integer.parseInt((String)dModel0.getValueAt(i,4));
         String assignTypeName = (String) dModel0.getValueAt(i,5);
         AssignmentType assignType = new AssignmentType();
-        boolean assignTypeRec = true;
+        boolean assignTypeRec = false;
         for (int j = 0; j < course.sizeOfAssignTypes(); j++){
-          if (course.getAssignmentType(j).getTypeName() == assignTypeName){
+          System.out.println("addAssignment Compare 1:" + course.getAssignmentType(j).getTypeName());
+          System.out.println("addAssignment Compare 2" + assignTypeName);
+          if (course.getAssignmentType(j).getTypeName().equals(assignTypeName)){
             assignType = course.getAssignmentType(j);
+            assignTypeRec = true;
             break;
-          } else if (j == course.sizeOfAssignTypes() - 1){
-            assignTypeRec = false;
           }
         }
 
@@ -267,14 +268,15 @@ class GradusApp implements ActionListener{
       for (int j = 0; j < course.sizeOfAssignments(); j++){
         System.out.println("Assignment's AT:"+course.getAssignment(j).getAssignType().getTypeName());
         if (course.getAssignmentType(i).getTypeName() == course.getAssignment(j).getAssignType().getTypeName()){
-          sumRawGrade += (course.getAssignment(j).getPointsEarned() / course.getAssignment(j).getTotalPoints())*course.getAssignment(j).getWeight();
+          sumRawGrade += ((double)course.getAssignment(j).getPointsEarned() / course.getAssignment(j).getTotalPoints())*course.getAssignment(j).getWeight();
           totalWeight += course.getAssignment(j).getWeight();
           System.out.println("entered conditional for function calculateTotalGrade");
         }
       }
-      totalGrade += (sumRawGrade/totalWeight)*(course.getAssignmentType(i).getTypeWeight()/100);
+      totalGrade += (sumRawGrade/totalWeight)*((double)course.getAssignmentType(i).getTypeWeight()/100);
+      System.out.println("Total Grade: " + totalGrade);
     }
-    jlab.setText("Total Grade: " + totalGrade);
+    jlab.setText("Total Grade: " + (totalGrade*100));
   }
 
   public static void main(String args[]){
