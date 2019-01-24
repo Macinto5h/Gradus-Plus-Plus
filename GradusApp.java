@@ -165,7 +165,9 @@ class GradusApp implements ActionListener{
     }else if(comStr.equals("Enter Assignments")){
       addAssignments();
     }else if(comStr.equals("Calculate Total Grade")){
-      calculateTotalGrade();
+      course.calculateTotalGrade();
+      jlab.setText("Total Grade: " + course.getTotalGrade()); //Make getTotalGrade Method.
+      System.out.println(course);
     }else{
       jlab.setText(comStr + " Selected");
     }
@@ -222,6 +224,7 @@ class GradusApp implements ActionListener{
     *
     */
   private void addAssignments(){
+    course.clearAssignments();
     int totalRows = dModel0.getRowCount();
     if (totalRows <= 0){
       //Have a message print error no types were entered.
@@ -236,8 +239,8 @@ class GradusApp implements ActionListener{
         AssignmentType assignType = new AssignmentType();
         boolean assignTypeRec = false;
         for (int j = 0; j < course.sizeOfAssignTypes(); j++){
-          System.out.println("addAssignment Compare 1:" + course.getAssignmentType(j).getTypeName());
-          System.out.println("addAssignment Compare 2" + assignTypeName);
+          //System.out.println("addAssignment Compare 1:" + course.getAssignmentType(j).getTypeName());
+          //System.out.println("addAssignment Compare 2" + assignTypeName);
           if (course.getAssignmentType(j).getTypeName().equals(assignTypeName)){
             assignType = course.getAssignmentType(j);
             assignTypeRec = true;
@@ -249,34 +252,10 @@ class GradusApp implements ActionListener{
           course.addAssignment(new Assignment(name,pointsEarned,totalPoints,drop,weight,assignType));
         }
 
-        System.out.println(name);
+        //System.out.println(name);
       }
       jmiCalcGrade.setEnabled(true);
     }
-  }
-
-  /**Used to calculate total grade...
-    *
-    */
-  private void calculateTotalGrade(){
-    double totalGrade = 0;
-    for (int i = 0; i < course.sizeOfAssignTypes(); i++){
-      int totalWeight = 0;
-      double sumRawGrade = 0;
-      System.out.println("AT Name:" + course.getAssignmentType(i).getTypeName());
-      System.out.println(course.sizeOfAssignments());
-      for (int j = 0; j < course.sizeOfAssignments(); j++){
-        System.out.println("Assignment's AT:"+course.getAssignment(j).getAssignType().getTypeName());
-        if (course.getAssignmentType(i).getTypeName() == course.getAssignment(j).getAssignType().getTypeName()){
-          sumRawGrade += ((double)course.getAssignment(j).getPointsEarned() / course.getAssignment(j).getTotalPoints())*course.getAssignment(j).getWeight();
-          totalWeight += course.getAssignment(j).getWeight();
-          System.out.println("entered conditional for function calculateTotalGrade");
-        }
-      }
-      totalGrade += (sumRawGrade/totalWeight)*((double)course.getAssignmentType(i).getTypeWeight()/100);
-      System.out.println("Total Grade: " + totalGrade);
-    }
-    jlab.setText("Total Grade: " + (totalGrade*100));
   }
 
   public static void main(String args[]){

@@ -13,7 +13,7 @@ public class Course{
   private ArrayList<Assignment> assignments;
   private ArrayList<AssignmentType> assignTypes;
   private String name;
-  private int totalGrade;
+  private double totalGrade;
 
   /*-----Constructors-----*/
   /**
@@ -69,6 +69,14 @@ public class Course{
     return this.assignments.get(index);
   }
 
+  /**
+    * Retrieves the Total Grade of the course.
+    * @return double totalGrade, calculated from Assignments in course.
+    */
+  public double getTotalGrade(){
+    return totalGrade;
+  }
+
   /*-----Size of Methods-----*/
   /** Returns the number of elements in the AssignmentType list.
     *
@@ -80,5 +88,54 @@ public class Course{
 
   public int sizeOfAssignments(){
     return this.assignments.size();
+  }
+
+  /** Removes all Assignments from the course.
+    *
+    */
+  public void clearAssignments(){
+    assignments.clear();
+  }
+
+  /**Calculates the total grade based off values stored in field arrays.
+    *
+    */
+  public void calculateTotalGrade(){
+    totalGrade = 0;
+    for (int i = 0; i < sizeOfAssignTypes(); i++){
+      double totalWeight = 0;
+      double sumRawGrade = 0;
+      String assignName = getAssignmentType(i).getTypeName();
+      double typeWeight = (double)getAssignmentType(i).getTypeWeight();
+      for (int j = 0; j < sizeOfAssignments(); j++){
+        String jAssignName = getAssignment(j).getAssignType().getTypeName();
+        if (assignName.equals(jAssignName)){
+          double pointsEarned = (double)getAssignment(j).getPointsEarned();
+          double totalPoints = (double)getAssignment(j).getTotalPoints();
+          double assignWeight = (double)getAssignment(j).getWeight();
+          totalWeight += assignWeight;
+          sumRawGrade += ((pointsEarned/totalPoints)*assignWeight);
+        }
+      }
+
+      if(totalWeight != 0){
+        totalGrade += ((sumRawGrade/totalWeight)*typeWeight);
+      }
+    }
+  }
+  /**
+    * @return A String value containing information from all fields of this class.
+    */
+  public String toString(){
+    StringBuilder sb = new StringBuilder();
+    sb.append("Name: " + name + "\n");
+    sb.append("TotalGrade: " + totalGrade + "\n");
+    for (Assignment a : assignments){
+      sb.append(a.toString() + "\n");
+    }
+    for (AssignmentType at : assignTypes){
+      sb.append(at.toString() + "\n");
+    }
+    return sb.toString();
   }
 }
