@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.io.*;
 
 class GradusApp implements ActionListener{
   /*-----Fields-----*/
@@ -168,6 +169,21 @@ class GradusApp implements ActionListener{
       course.calculateTotalGrade();
       jlab.setText("Total Grade: " + course.getTotalGrade()); //Make getTotalGrade Method.
       System.out.println(course);
+    }else if(comStr.equals("Save")){
+      try{
+        JFileChooser fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fc.showSaveDialog(jfrm);
+        if(result == JFileChooser.APPROVE_OPTION){
+          File file = fc.getSelectedFile();
+          FileWriter fw = new FileWriter(file);
+          fw.write(course.toString());
+          fw.flush();
+          fw.close();
+        }
+      }catch(IOException e){
+        e.getMessage();
+      }
     }else{
       jlab.setText(comStr + " Selected");
     }

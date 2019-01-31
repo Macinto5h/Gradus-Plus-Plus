@@ -29,7 +29,7 @@ public class Course{
   /**
     * Constructor takes the name as the only input.
     *
-    * @param String name, the title of the course.
+    * @param name, the title of the course.
     */
   public Course(String name){
     this.assignments = new ArrayList<Assignment>();
@@ -41,7 +41,7 @@ public class Course{
   /*-----Adders-----*/
   /** Adds assignment to the Course assignment arraylist.
     *
-    * @param Assignment a, new assignment.
+    * @param a, new assignment.
     */
   public void addAssignment(Assignment a){
     this.assignments.add(a);
@@ -49,7 +49,7 @@ public class Course{
 
   /** Adds assignment type to the course arraylist.
     *
-    * @param AssignmentType at, new assignment type.
+    * @param at, new assignment type.
     */
   public void addAssignmentType(AssignmentType at){
     this.assignTypes.add(at);
@@ -58,7 +58,7 @@ public class Course{
   /*-----Getters-----*/
   /** Retrieves an AssignmentType for the course.
     *
-    * @param int index.
+    * @param index.
     * @return AssignmentType
     */
   public AssignmentType getAssignmentType(int index){

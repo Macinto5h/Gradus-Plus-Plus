@@ -23,8 +23,8 @@ public class AssignmentType{
     * Constructor that defines the class fields using its input. Takes two
     * parameters: typeWeight and typeName.
     *
-    * @param int typeWeight, sets the AssignmentType weight for the overall course.
-    * @param String typeName, name associated with the assignment type, ex. Quizzes.
+    * @param typeWeight, sets the AssignmentType weight for the overall course.
+    * @param typeName, name associated with the assignment type, ex. Quizzes.
     */
   public AssignmentType(String typeName, int typeWeight){
     this.setTypeName(typeName);
@@ -53,7 +53,7 @@ public class AssignmentType{
   /**
     * Set method for the field typeName.
     *
-    * @param String typeName, new value for the typeName field.
+    * @param typeName, new value for the typeName field.
     */
   public void setTypeName(String typeName){
     this.typeName = typeName;
@@ -62,7 +62,7 @@ public class AssignmentType{
   /**
     * Set method for the field typeWeight.
     *
-    * @param int typeWeight, new value for the typeWeight field.
+    * @param typeWeight, new value for the typeWeight field.
     */
   public void setTypeWeight(int typeWeight){
     this.typeWeight = typeWeight;
@@ -82,7 +82,7 @@ public class AssignmentType{
   /**
     * Main method used to test functionality of the class defined methods.
     *
-    * @param String args[]
+    * @param args[]
     */
   public static void main(String args[]){
     System.out.println("Testing AssignmentType class");

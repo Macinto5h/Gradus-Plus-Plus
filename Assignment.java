@@ -30,12 +30,12 @@ public class Assignment{
   /**
     * Constructor with all required parameters.
     *
-    * @param String name, the title for the assignment.
-    * @param int pointsEarned, total credit earned from assignment.
-    * @param int totalPoints, total possible points that can be earned for the assignment.
-    * @param boolean drop, decides if the assignment will count towards course grade.
-    * @param int weight, local influence the assignment has on the course grade.
-    * @param AssignmentType assignType, used for classifaction and weight balancing.
+    * @param name, the title for the assignment.
+    * @param pointsEarned, total credit earned from assignment.
+    * @param totalPoints, total possible points that can be earned for the assignment.
+    * @param drop, decides if the assignment will count towards course grade.
+    * @param weight, local influence the assignment has on the course grade.
+    * @param assignType, used for classifaction and weight balancing.
     */
   public Assignment(String name, int pointsEarned, int totalPoints, boolean drop, int weight, AssignmentType assignType){
     this.setName(name);
@@ -104,7 +104,7 @@ public class Assignment{
   /**
     * Set method for assignType.
     *
-    * @param AssignmentType assignType.
+    * @param assignType.
     */
   public void setAssignType(AssignmentType assignType){
     this.assignType = assignType;
@@ -113,7 +113,7 @@ public class Assignment{
   /**
     * Set method for drop.
     *
-    * @param boolean drop.
+    * @param drop.
     */
   public void setDrop(boolean drop){
     this.drop = drop;
@@ -122,7 +122,7 @@ public class Assignment{
   /**
     * Set method for name.
     *
-    * @param String name.
+    * @param name.
     */
   public void setName(String name){
     this.name = name;
@@ -131,7 +131,7 @@ public class Assignment{
   /**
     * Set method for pointsEarned.
     *
-    * @param int pointsEarned.
+    * @param pointsEarned.
     */
   public void setPointsEarned(int pointsEarned){
     this.pointsEarned = pointsEarned;
@@ -140,7 +140,7 @@ public class Assignment{
   /**
     * Set method for totalPoints.
     *
-    * @param int totalPoints.
+    * @param totalPoints.
     */
   public void setTotalPoints(int totalPoints){
     this.totalPoints = totalPoints;
@@ -149,7 +149,7 @@ public class Assignment{
   /**
     * Set method for weight.
     *
-    * @param int weight.
+    * @param weight.
     */
   public void setWeight(int weight){
     this.weight = weight;
@@ -170,7 +170,7 @@ public class Assignment{
   /**
     * Main method used to test functionality of the class defined methods.
     *
-    * @param String args[]
+    * @param args[]
     */
   public static void main(String args[]){
     System.out.println("Testing Assignment class");
