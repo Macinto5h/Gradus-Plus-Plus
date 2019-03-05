@@ -2,7 +2,7 @@
   * Datatype used to hold grade information of assignment's for a course.
   *
   * @author Macallan Camara (Macinto5h)
-  * @version 0.0.1, 12/19/2018
+  * @version 0.0.1, Last Updated 3/5/2019
   */
 public class Assignment{
 
@@ -162,9 +162,9 @@ public class Assignment{
     * @return A string featuring all private fields.
     */
   public String toString(){
-    return "Assignment={" + this.getName() +", " + this.getPointsEarned() + ", "
-    + this.getTotalPoints() + ", " + this.getDrop() + ", " + this.getWeight() +
-    ", " + this.getAssignType().getTypeName() + "}";
+    return "Assignment: " + this.getName() +" " + this.getPointsEarned() + " "
+    + this.getTotalPoints() + " " + this.getDrop() + " " + this.getWeight() +
+    " " + this.getAssignType().getTypeName() + " ";
   }
 
   /**
