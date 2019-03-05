@@ -2,7 +2,7 @@
   * Main object used to hold course and its information.
   *
   * @author Macallan Camara (Macinto5h)
-  * @version 0.0.1, 12/21/18
+  * @version 0.0.1, Last Updated 3/5/2019
   */
 
 import java.util.ArrayList;
@@ -38,6 +38,21 @@ public class Course{
     this.totalGrade = 0;
   }
 
+  /** Sets Name to given input.
+    *
+    * @param name, title of the course.
+    */
+  public void setName(String name){
+    this.name = name;
+  }
+
+  /** Sets totalGrade to given input.
+    *
+    * @param grade, new grade of course.
+    */
+  public void setGrade(double grade){
+    this.totalGrade = grade;
+  }
   /*-----Adders-----*/
   /** Adds assignment to the Course assignment arraylist.
     *
