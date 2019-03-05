@@ -2,7 +2,7 @@
   * GUI interface and main class for Gradus++
   *
   * @author Macallan Camara (Macinto5h)
-  * @version 0.0.1, 12/23/18
+  * @version 0.0.1, Last Updated 3/5/2019
   */
 
 import java.awt.*;
@@ -10,6 +10,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.*;
+import java.util.Scanner;
 
 class GradusApp implements ActionListener{
   /*-----Fields-----*/
@@ -28,7 +29,7 @@ class GradusApp implements ActionListener{
   public GradusApp(){
     //Create a new JFrame Container
     jfrm = new JFrame("Gradus++ v0.0.1");
-
+    //Adds image icon to desktop.
     Image icon = Toolkit.getDefaultToolkit().getImage("g++.gif");
     jfrm.setIconImage(icon);
 
@@ -180,6 +181,62 @@ class GradusApp implements ActionListener{
           fw.write(course.toString());
           fw.flush();
           fw.close();
+        }
+      }catch(IOException e){
+        e.getMessage();
+      }
+    }else if(comStr.equals("Open")){
+      try{
+        JFileChooser fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fc.showOpenDialog(jfrm);
+        if (result == JFileChooser.APPROVE_OPTION){
+          File file = fc.getSelectedFile();
+          Scanner fileContent = new Scanner(file);
+          //NEED TO BUILD PARSER FOR FILECONTENT TO PUT THIS IN COURSE OBJECT
+          //Building parser here, thinking about putting into Course class.
+          //Note course is initialized in the constructor.
+          //Things to add: name of course, total grade, assignments, assignTypes
+          while (fileContent.hasNext()){
+            if (fileContent.hasNext("Name:")){
+              //Condition that adds course name.
+              fileContent.next("Name:");
+              String name = fileContent.next();
+              course.setName(name);
+            }else if (fileContent.hasNext("TotalGrade:")){
+              //Condition that adds TotalGrade from file.
+              fileContent.next("TotalGrade:");
+              double grade = fileContent.nextDouble();
+              course.setGrade(grade);
+              System.out.println(course.getTotalGrade());
+            }else if (fileContent.hasNext("Assignment:")){
+              //Condition that adds an Assignment from file.
+              fileContent.next("Assignment:");
+              String name = fileContent.next();
+              System.out.println(name);
+              int pointsEarned = fileContent.nextInt();
+              int totalPoints = fileContent.nextInt();
+              System.out.println(totalPoints);
+              boolean drop = fileContent.nextBoolean();
+              int weight = fileContent.nextInt();
+              String typeName = fileContent.next();
+
+              this.dModel0.addRow(new Object[]{name,pointsEarned,totalPoints,drop,weight,typeName});
+            }else if (fileContent.hasNext("AssignmentType:")){
+              //Condition that adds an AssignmentType from file.
+              fileContent.next("AssignmentType:");
+              String typeName = fileContent.next();
+              int weight = fileContent.nextInt();
+              this.dModel1.addRow(new Object[]{typeName,weight});
+            }else{
+              //have it skip over the undesirable token.
+              System.out.println("undesirable: " + fileContent.next());
+            }
+          }
+          jsp0.setVisible(true);
+          jsp1.setVisible(false);
+          fileContent.close();
+
         }
       }catch(IOException e){
         e.getMessage();

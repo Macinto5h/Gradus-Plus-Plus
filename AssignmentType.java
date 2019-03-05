@@ -2,7 +2,7 @@
   * Datatype used to define an Assignment's specific weight contribution to course
   *
   * @author Macallan Camara (Macinto5h)
-  * @version 0.0.1, 12/18/2018
+  * @version 0.0.1, Last Updated 3/5/2019
   */
 
 public class AssignmentType{
@@ -75,8 +75,8 @@ public class AssignmentType{
     * @return A string featuring the typeName and typeWeight.
     */
   public String toString(){
-    return "An AssignmentType object with values typeName = " +
-    this.getTypeName() + " typeWeight = " + this.getTypeWeight();
+    return "AssignmentType: " +
+    this.getTypeName() + " " + this.getTypeWeight();
   }
 
   /**
